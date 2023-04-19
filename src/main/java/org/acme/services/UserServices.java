@@ -2,10 +2,17 @@ package org.acme.services;
 
 import org.acme.entity.User;
 import org.bson.Document;
+import org.bson.types.ObjectId;
 
 import java.util.List;
 
 public interface UserServices {
 
-    List<Document> getAllUsers();
+    List<User> getAllUsers();
+
+    void crear(User usuario);
+
+    User buscarPorId(ObjectId id);
+
+    void actualizar(User usuario);
 }

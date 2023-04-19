@@ -1,5 +1,8 @@
 package org.acme.entity;
 
+import io.quarkus.mongodb.panache.common.MongoEntity;
+
+@MongoEntity(database = "tweetDB", collection = "tweets")
 public class Tweet {
 
     private String id;
