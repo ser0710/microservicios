@@ -7,9 +7,9 @@ public class Tweet {
 
     private String id;
     private String message;
-    private User user;
+    private String user;
 
-    public Tweet(String id, String message, User user) {
+    public Tweet(String id, String message, String user) {
         this.id = id;
         this.message = message;
         this.user = user;
@@ -34,11 +34,11 @@ public class Tweet {
         this.message = message;
     }
 
-    public User getUser() {
+    public String getUser() {
         return user;
     }
 
-    public void setUser(User user) {
+    public void setUser(String user) {
         this.user = user;
     }
 }

@@ -45,32 +45,6 @@ public class UserController {
         return usuario;
     }
 
-    @GET
-    @Path("{id}/hilos")
-    public List<String> obtenerHilosDeUsuario(@PathParam("id") String id) {
-        ObjectId objectId = new ObjectId(id);
-        User usuario = userServices.buscarPorId(objectId);
-        if (usuario == null) {
-            throw new WebApplicationException(Response.Status.NOT_FOUND);
-        }
-        return null;
-    }
-
-
-    @POST
-    @Path("{id}/hilos")
-    public Response crearTweetParaUsuario(@PathParam("id") String id, Stream hilo) {
-        ObjectId objectId = new ObjectId(id);
-        User usuario = userServices.buscarPorId(objectId);
-        if (usuario == null) {
-            throw new WebApplicationException(Response.Status.NOT_FOUND);
-        }
-        //usuario.getHilos();
-        System.out.println("HILOOOO " + hilo.getTweets());
-        hilo.setUsuario(usuario);
-        userServices.actualizar(usuario);
-        return Response.status(Response.Status.CREATED).build();
-    }
 
 }
 

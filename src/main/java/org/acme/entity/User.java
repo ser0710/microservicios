@@ -16,14 +16,14 @@ public class User extends PanacheMongoEntity {
     private String email;
     private String password;
 
-    private List<String> tweets = new ArrayList<>();
+//    private List<String> tweets = new ArrayList<>();
 
-    public User(String id, String name, String email, String password, List<String> tweets) {
+    public User(String id, String name, String email, String password ) {
         this.id = id;
         this.name = name;
         this.email = email;
         this.password = password;
-        this.tweets = tweets;
+//        this.tweets = tweets;
     }
 
     public User() {
@@ -61,7 +61,7 @@ public class User extends PanacheMongoEntity {
         this.password = password;
     }
 
-    public List<String> gettweets() {
-        return tweets;
-    }
+//    public List<String> gettweets() {
+//        return tweets;
+//    }
 }

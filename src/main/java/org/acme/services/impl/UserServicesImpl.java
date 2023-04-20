@@ -52,28 +52,32 @@ public class UserServicesImpl implements UserServices {
         Document document = new Document()
                 .append("nombre", usuario.getName())
                 .append("email", usuario.getEmail())
-                .append("password", usuario.getPassword())
-                .append("hilos", usuario.gettweets());
+                .append("password", usuario.getPassword());
+//                .append("hilos", usuario.gettweets());
         getCollection().insertOne(document);
     }
 
 
     @Override
     public User buscarPorId(ObjectId id) {
-        Document userDocument = (Document) getCollection().find(new Document("_id", id)).first();
-        User user = new User();
-        user.setId(String.valueOf(userDocument.getObjectId("_id")));
-        user.setName(userDocument.getString("nombre"));
-        user.setEmail(userDocument.getString("email"));
-        user.setPassword(userDocument.getString("password"));
-        return user;
+        try {
+            Document userDocument = (Document) getCollection().find(new Document("_id", id)).first();
+            User user = new User();
+            user.setId(String.valueOf(userDocument.getObjectId("_id")));
+            user.setName(userDocument.getString("nombre"));
+            user.setEmail(userDocument.getString("email"));
+            user.setPassword(userDocument.getString("password"));
+            return user;
+        }catch (Exception e){
+            return null;
+        }
     }
 
 
-    @Override
-    public void actualizar(User usuario) {
-
-    }
+//    @Override
+//    public void actualizar(User usuario) {
+//
+//    }
 
     private MongoCollection getCollection(){
         return mongoClient.getDatabase("tweetDB").getCollection("users");

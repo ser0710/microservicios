@@ -14,5 +14,5 @@ public interface UserServices {
 
     User buscarPorId(ObjectId id);
 
-    void actualizar(User usuario);
+//    void crearTweet(User usuario);
 }
