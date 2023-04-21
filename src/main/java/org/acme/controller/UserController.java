@@ -3,17 +3,16 @@ package org.acme.controller;
 import com.mongodb.client.MongoClient;
 import com.mongodb.client.MongoCollection;
 import io.quarkus.mongodb.MongoClientName;
-import org.acme.entity.Stream;
+import io.quarkus.security.Authenticated;
+import org.acme.configuration.CognitoLogin;
 import org.acme.entity.User;
 import org.acme.services.UserServices;
-import org.bson.Document;
 import org.bson.types.ObjectId;
 
 import javax.inject.Inject;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
-import java.util.ArrayList;
 import java.util.List;
 
 @Path("/users")
@@ -23,6 +22,8 @@ public class UserController {
     @Inject
     UserServices userServices;
 
+    CognitoLogin cognitoLogin = new CognitoLogin();
+
     @GET
     public List<User> getAllUsers(){
        return userServices.getAllUsers();
@@ -30,8 +31,15 @@ public class UserController {
 
     @POST
     public Response crearUsuario(User usuario) {
+        cognitoLogin.signUp(usuario.getName(),usuario.getEmail(),usuario.getPassword());
         userServices.crear(usuario);
         return Response.status(Response.Status.CREATED).build();
+    }
+
+    @POST
+    @Path("login")
+    public String login(User usuario) {
+        return cognitoLogin.Login(usuario.getEmail(),usuario.getPassword());
     }
 
     @GET
