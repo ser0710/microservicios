@@ -15,4 +15,6 @@ public interface UserServices {
     User buscarPorId(ObjectId id);
 
 //    void crearTweet(User usuario);
+
+    Boolean login(User user);
 }

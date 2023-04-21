@@ -53,8 +53,44 @@ return{
                 body: JSON.stringify(user)
             };
             const response = await fetch("http://localhost:8080/users" , options);
-    }
+            console.log(response)
+            if (response.status!==201) {
+                alert("La constraseña debe tener min 8 caracteres con mayusculas y numeros")
+            }else{
+                window.location.href = "/";
+            }
+//            window.location.href = "/";
+    },
 
+    loginUser: async function(){
+        var email = document.getElementById("email").value;
+        var password = document.getElementById("password").value;
+        var user = {
+                email: email,
+                password: password
+            }
+        const options = {
+                    method: 'POST',
+                    headers: {
+                          'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(user)
+                };
+                const response = await fetch("http://localhost:8080/users/login" , options);
+                if (response.status!==202) {
+                    alert("Usuario y/o contraseña incorrectos")
+                }else{
+                    window.location.href = "/tweets.html";
+                }
+        },
+
+    logOut:function(){
+        window.location.href = "/";
+    },
+
+    crearUsuario:function(){
+            window.location.href = "/createUser.html";
+        }
 
 
 

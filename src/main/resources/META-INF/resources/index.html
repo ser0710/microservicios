@@ -3,25 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-
+    <script src="js/apiclient.js"></script>
 </head>
 <body>
     <h1>
         Ingrese usuario y contraseña
     </h1>
-    <form onsubmit="app.createUser()">
+<!--    <form onsubmit="app.loginUser()">-->
         <div style="margin: 10px">
             <label>Usuario:</label>
-            <input name="Usuario" type="email" placeholder="example@mail.com"/>
+            <input id="email" name="Usuario" type="email" placeholder="example@mail.com"/>
         </div>
         <div style="margin: 10px">
             <label>Contraseña:</label>
-            <input name="Contraseña" type="password" placeholder="password"/>
+            <input id="password" name="Contraseña" type="password" placeholder="password"/>
         </div>
         <div>
-            <button type="submit">Iniciar sesión</button>
+            <button onclick="app.loginUser()">Iniciar sesión</button>
         </div>
-    </form>
+<!--    </form>-->
+    <button onclick="app.crearUsuario()">Crear Usuario</button>
 
 
 </body>

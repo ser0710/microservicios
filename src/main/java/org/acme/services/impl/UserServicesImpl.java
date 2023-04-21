@@ -15,6 +15,7 @@ import javax.inject.Inject;
 import javax.ws.rs.NotFoundException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 
@@ -71,6 +72,17 @@ public class UserServicesImpl implements UserServices {
         }catch (Exception e){
             return null;
         }
+    }
+
+    @Override
+    public Boolean login(User user) {
+        List<User> usuarios = getAllUsers();
+        for (User u: usuarios){
+            if(Objects.equals(user.getEmail(), u.getEmail()) && Objects.equals(user.getPassword(), u.getPassword())){
+                return true;
+            }
+        }
+        return false;
     }
 
 

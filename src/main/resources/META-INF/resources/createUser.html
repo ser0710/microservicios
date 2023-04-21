@@ -9,7 +9,7 @@
   <h1>
     Crear cuenta
   </h1>
-  <form onsubmit="app.createUser()" method="POST">
+<!--  <form onsubmit="app.createUser()" method="POST">-->
     <div style="margin: 10px">
       <label>Nombre:</label>
       <input id="user" name="Usuario" type="text" placeholder="example"/>
@@ -23,9 +23,9 @@
       <input id="password" name="Contraseña" type="password" placeholder="password"/>
     </div>
     <div>
-      <button type="submit">Crear cuenta</button>
+      <button onclick="app.createUser()">Crear cuenta</button>
     </div>
-  </form>
+<!--  </form>-->
 
 </body>
 </html>

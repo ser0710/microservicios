@@ -31,15 +31,23 @@ public class UserController {
 
     @POST
     public Response crearUsuario(User usuario) {
-        cognitoLogin.signUp(usuario.getName(),usuario.getEmail(),usuario.getPassword());
-        userServices.crear(usuario);
-        return Response.status(Response.Status.CREATED).build();
+        try {
+            cognitoLogin.signUp(usuario.getName(), usuario.getEmail(), usuario.getPassword());
+            userServices.crear(usuario);
+            return Response.status(Response.Status.CREATED).build();
+        }catch (Exception e){
+            return Response.status(Response.Status.BAD_REQUEST).build();
+        }
     }
 
     @POST
     @Path("login")
-    public String login(User usuario) {
-        return cognitoLogin.Login(usuario.getEmail(),usuario.getPassword());
+    public Response login(User usuario) {
+        if(userServices.login(usuario)) {
+
+            return Response.status(Response.Status.ACCEPTED).entity(cognitoLogin.Login(usuario.getEmail(), usuario.getPassword())).build();
+        }
+        return Response.status(Response.Status.BAD_REQUEST).build();
     }
 
     @GET
