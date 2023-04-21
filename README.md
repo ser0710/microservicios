@@ -90,24 +90,24 @@ no relacional de MongoDB.
 
 ## Reporte de pruebas
 Formulario de Login para ingresar a la aplicación
-![img.png](img.png)
+![img.png](imgs/img.png)
 
 Se ingresa con un usuario creado en la base de datos
 
-![img_1.png](img_1.png)
+![img_1.png](imgs/img_1.png)
 
 Se ingresa al aplicativo donde se puede observar un campo para agregar un nuevo tweet y los tweets publicados antes
 
-![img_2.png](img_2.png)
+![img_2.png](imgs/img_2.png)
 
 En las siguientes fotos se puede ver como se agrega un nuevo tweet
 
-![img_3.png](img_3.png)
-![img_4.png](img_4.png)
+![img_3.png](imgs/img_3.png)
+![img_4.png](imgs/img_4.png)
 
 Se ingresa con un usuario incorrecto y nos sale esto
 
-![img_5.png](img_5.png)
+![img_5.png](imgs/img_5.png)
 
 
 ## Video del funcionamiento
