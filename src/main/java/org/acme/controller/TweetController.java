@@ -39,7 +39,7 @@ public class TweetController {
     }
 
     @POST
-    public Response createTweet(Tweet tweet) {
+    public Response createTweet(Tweet tweet){
         ObjectId objectId = new ObjectId(tweet.getUser());
         User usuario = userServices.buscarPorId(objectId);
         if (usuario == null) {

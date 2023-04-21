@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="js/apiclient.js"></script>
+</head>
+<body onload="app.getTweets()">
+        <div style="display: grid; place-items: center">
+            <input id="user" name="user" type="hidden" value="643f0ea5e4c8e841f7071fdf">
+            <textarea name="message" style="width: 300px; height: 100px" maxlength="140"></textarea>
+            <button onclick="app.createTweet()">Publicar</button>
+        </div>
+    <div id="tweets" style="display: grid; place-items: center; margin: 100px">
+
+    </div>
+
+
+</body>
+</html>
