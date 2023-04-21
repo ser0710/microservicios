@@ -7,7 +7,7 @@ return{
                       'Content-Type': 'application/json'
                     }
                 };
-                const response = await fetch("http://localhost:8080/tweets", options);
+                const response = await fetch("http://ec2-54-90-214-96.compute-1.amazonaws.com:8080/tweets", options);
                 if (response.ok) {
                 const jsonResponse = await response.json();
                 jsonResponse.map((tweet) => {
@@ -32,7 +32,7 @@ return{
             },
             body: JSON.stringify(tweet)
         };
-        const response = await fetch("http://localhost:8080/tweets" , options);
+        const response = await fetch("http://ec2-54-90-214-96.compute-1.amazonaws.com:8080/tweets" , options);
         location.reload();
     },
     createUser: async function(){
@@ -52,12 +52,12 @@ return{
                 },
                 body: JSON.stringify(user)
             };
-            const response = await fetch("http://localhost:8080/users" , options);
+            const response = await fetch("http://ec2-54-90-214-96.compute-1.amazonaws.com:8080/users" , options);
             console.log(response)
             if (response.status!==201) {
                 alert("La constraseña debe tener min 8 caracteres con mayusculas y numeros")
             }else{
-                window.location.href = "/";
+                window.location.href = "/index.html";
             }
 //            window.location.href = "/";
     },
@@ -76,7 +76,7 @@ return{
                     },
                     body: JSON.stringify(user)
                 };
-                const response = await fetch("http://localhost:8080/users/login" , options);
+                const response = await fetch("http://ec2-54-90-214-96.compute-1.amazonaws.com:8080/users/login" , options);
                 if (response.status!==202) {
                     alert("Usuario y/o contraseña incorrectos")
                 }else{
@@ -85,7 +85,7 @@ return{
         },
 
     logOut:function(){
-        window.location.href = "/";
+        window.location.href = "/index.html";
     },
 
     crearUsuario:function(){
