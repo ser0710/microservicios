@@ -5,12 +5,15 @@ import com.mongodb.client.MongoCollection;
 import io.quarkus.mongodb.MongoClientName;
 import io.quarkus.security.Authenticated;
 import org.acme.configuration.CognitoLogin;
+import org.acme.configuration.JwtUtils;
 import org.acme.entity.User;
 import org.acme.services.UserServices;
 import org.bson.types.ObjectId;
 
 import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
 import javax.ws.rs.*;
+import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import java.util.List;
@@ -24,6 +27,9 @@ public class UserController {
 
     CognitoLogin cognitoLogin = new CognitoLogin();
 
+    @Context
+    HttpServletRequest httpServletRequest;
+
     @GET
     public List<User> getAllUsers(){
        return userServices.getAllUsers();
@@ -36,7 +42,7 @@ public class UserController {
             userServices.crear(usuario);
             return Response.status(Response.Status.CREATED).build();
         }catch (Exception e){
-            return Response.status(Response.Status.BAD_REQUEST).build();
+            return Response.status(Response.Status.BAD_REQUEST).entity(e.getMessage()).build();
         }
     }
 
@@ -53,12 +59,15 @@ public class UserController {
     @GET
     @Path("{id}")
     public User obtenerUsuarioPorId(@PathParam("id") String id) {
-        ObjectId objectId = new ObjectId(id);
-        User usuario = userServices.buscarPorId(objectId);
-        if (usuario == null) {
-            throw new WebApplicationException(Response.Status.NOT_FOUND);
+        if(JwtUtils.validarToken(httpServletRequest.getHeader("Authorization"), "")) {
+            ObjectId objectId = new ObjectId(id);
+            User usuario = userServices.buscarPorId(objectId);
+            if (usuario == null) {
+                throw new WebApplicationException(Response.Status.NOT_FOUND);
+            }
+            return usuario;
         }
-        return usuario;
+        return null;
     }
 
 

@@ -1,12 +1,19 @@
 var app = (function(){
 return{
     getTweets: async function(){
-        const options = {
-                    method: 'GET',
-                    headers: {
-                      'Content-Type': 'application/json'
-                    }
-                };
+        const token = localStorage.getItem('token'); // Obtener el token almacenado
+            if (!token) {
+                // Redirigir al usuario a la página de inicio de sesión si no hay token
+                window.location.href = "/index.html";
+                return;
+            }
+
+            const options = {
+                method: 'GET',
+                headers: {
+                    'Authorization': 'Bearer ${token}'
+                }
+            };
                 const response = await fetch("http://ec2-54-90-214-96.compute-1.amazonaws.com:8080/tweets", options);
                 if (response.ok) {
                 const jsonResponse = await response.json();
@@ -76,11 +83,19 @@ return{
                     },
                     body: JSON.stringify(user)
                 };
+                try{
                 const response = await fetch("http://ec2-54-90-214-96.compute-1.amazonaws.com:8080/users/login" , options);
                 if (response.status!==202) {
                     alert("Usuario y/o contraseña incorrectos")
                 }else{
+                    const data = await response.json();
+                    const token = data.token; // Obtener el token del cuerpo de la respuesta
+                    localStorage.setItem('token', token);
                     window.location.href = "/tweets.html";
+                }
+                }catch (error){
+                    console.error(error)
+                    alert("error al iniciar sesion")
                 }
         },
 

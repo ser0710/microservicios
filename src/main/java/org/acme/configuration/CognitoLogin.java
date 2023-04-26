@@ -15,7 +15,7 @@ public class CognitoLogin {
     private AWSCognitoIdentityProvider client = createClient();
 
     private AWSCognitoIdentityProvider createClient(){
-        AWSSessionCredentials awsCreds = new BasicSessionCredentials("ASIAZGATGYFRQNNGOYLP", "x3vFfOR1Cx5cnSSpkZ/DMomEYLrKuJOkGf+o9eqD","FwoGZXIvYXdzEK///////////wEaDIKyMmatoZXvKlf2EiLXAQbcqhpTm866uL7C+ZxBTbU2BRWhlDP+w/Xbn+wdgLctHOR1BeFJ3cfYe3VtfJWLZ76uZEcfxA4TTyTagSi8yQ1daC8y0d5ejYQNgRmGErMgGDQi+XHcGVNSELNo7KTg5wP/UtS0Sl15UmLzVSPYlpel4fS3BRn6PMnfj7TxwN1uPL06LtvFuwf8r3OuwPW5sPbLODs9v3r5nideg+nrJfXb++o/rCl6k/4WheoFrdIsZd7L5rjEHnwVGFAQnard82kQRzzZ3kIuK+U6m4pGeJWK/ZOCYOaIKN7ShqIGMi1/IL2YHLVVyMrAs0rcippJ67R0E85e6tc5CR/tYKWZVYA3nxI9wjV052RbX18=");
+        AWSSessionCredentials awsCreds = new BasicSessionCredentials("ASIAZGATGYFR7SWIQ67G", "YcJyxyakJ23emkQ+ndVZ1iU/+15Dfa8slZrkBFp9","FwoGZXIvYXdzECsaDO76nhdHi/lJqdSkcSLXARdTTqvsDdOgmPqHIoYFtmmQPoi+L+jxkoV3ruX1A9Ik+yNYJYTbVrbVbD0fPKngZm4zHAs9r9Fm+6y8RIcUky6fFwktfbYdvxLlKlWK9zbwGkLRDn6IjFQVCpmuBv58w0U56LP3tRLgDUD8d2hkJycaX4GPcgAcr7AEI82QNoRUREmLDc8luyh/WLXR80B/g0MRpQA1nqdPmNAbWuJvJniyp4byqYOTDYpnf+WaamCIY7XfIDxb6h2wHPvF5lmCmTtPbxiUI2zA+JRUc3kaojUBJl+LjmXTKM+FoqIGMi3zRpQvrM9lC6guCFmWGvnr2eK3X8A3CEkN0bTx0kD/PpKclhPa4nIgUroQ+RA=");
 
         // Cliente de Cognito
         AWSCognitoIdentityProvider cognitoClient = AWSCognitoIdentityProviderClientBuilder
@@ -30,7 +30,7 @@ public class CognitoLogin {
     public String Login(String email, String password) {
 
         // Datos de autenticación
-        String clientId = "38a0emb3thd7e5bhu9462u17nl";
+        String clientId = "5vk8nc0q6managog4dsjolgmjl";
 
         Map<String, String> authParams = new LinkedHashMap<String, String>() {{
             put("USERNAME", email);
@@ -53,7 +53,7 @@ public class CognitoLogin {
     }
 
     public SignUpResult signUp(String name, String email, String password) {
-        SignUpRequest request = new SignUpRequest().withClientId("38a0emb3thd7e5bhu9462u17nl")
+        SignUpRequest request = new SignUpRequest().withClientId("5vk8nc0q6managog4dsjolgmjl")
                 .withUsername(email)
                 .withPassword(password)
                 .withUserAttributes(
@@ -61,6 +61,7 @@ public class CognitoLogin {
                                 .withName("name")
                                 .withValue(name));
         SignUpResult result = client.signUp(request);
+        System.out.println(result);
         return result;
     }
 }
